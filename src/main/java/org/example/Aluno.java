@@ -36,7 +36,15 @@ public class Aluno {
     }
 
     public void setMatricula(String matricula) {
-        this.matricula = matricula;
+        if(matricula.length() != 11){
+            throw new RuntimeException("Matricula deve conter 11 caracteres");
+        }
+        boolean numeric = true;
+        numeric = matricula.matches("[0-9]+");
+        if(numeric)
+            this.matricula = matricula;
+        else
+            throw new RuntimeException("Matricula não deve conter caracteres especiais");
     }
 
     public String getCpf() {
@@ -44,6 +52,14 @@ public class Aluno {
     }
 
     public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Aluno(int id, String nome, int idade, String matricula, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.matricula = matricula;
         this.cpf = cpf;
     }
 }
